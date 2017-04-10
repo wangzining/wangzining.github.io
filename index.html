@@ -56,10 +56,41 @@ Language: Fluent Chinese, fluent English, Intermediate French</p>
 
 <p>Basketball, Table Tennis, Cooking</p>
     
-<h3>    
-<video width="320" height="240" controls>
-  <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
-</video>
+<div style="text-align:center"> 
+  <button onclick="playPause()">Play/Pause</button> 
+  <button onclick="makeBig()">Big</button>
+  <button onclick="makeSmall()">Small</button>
+  <button onclick="makeNormal()">Normal</button>
+  <br><br>
+  <video id="video1" width="420">
+    <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
+  </video>
+</div> 
+
+<script> 
+var myVideo = document.getElementById("video1"); 
+
+function playPause() { 
+    if (myVideo.paused) 
+        myVideo.play(); 
+    else 
+        myVideo.pause(); 
+} 
+
+function makeBig() { 
+    myVideo.width = 560; 
+} 
+
+function makeSmall() { 
+    myVideo.width = 320; 
+} 
+
+function makeNormal() { 
+    myVideo.width = 420; 
+} 
+</script> 
+
+<p>VPlease enjoy my piano debut: a famous Chinese song, <a href="https://www.youtube.com/watch?v=iwWIZ18WU8Y" target="_blank">Red Rose</a>.</p>
 
 <h3>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
