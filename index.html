@@ -54,7 +54,7 @@ Language: Fluent Chinese, fluent English, Intermediate French</p>
 <h3>
 <a id="hobbies" class="anchor" href="#hobbies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hobbies</h3>
 
-<p>Basketball, Table Tennis, Cooking</p>
+<p>Basketball, Table Tennis, Cooking Chinese Cuisine, Playing the Piano</p>
     
 <div style="text-align:center"> 
   <button onclick="playPause()">Play/Pause</button> 
@@ -62,7 +62,7 @@ Language: Fluent Chinese, fluent English, Intermediate French</p>
   <button onclick="makeSmall()">Small</button>
   <button onclick="makeNormal()">Normal</button>
   <br><br>
-  <video id="video1" width="300">
+  <video id="video1" width="200" height="240">
     <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
   </video>
 </div> 
@@ -78,15 +78,18 @@ function playPause() {
 } 
 
 function makeBig() { 
-    myVideo.width = 560; 
+    myVideo.width = 500; 
+    myVideo.height = 600; 
 } 
 
 function makeSmall() { 
-    myVideo.width = 320; 
+    myVideo.width = 100; 
+    myVideo.height = 120; 
 } 
 
 function makeNormal() { 
-    myVideo.width = 420; 
+    myVideo.width = 200; 
+    myVideo.height = 240; 
 } 
 </script> 
 
