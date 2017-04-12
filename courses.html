@@ -12,6 +12,10 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
@@ -19,101 +23,68 @@
       <h1 class="project-name">Zining Wang</h1>
       <h2 class="project-tagline"></h2>
     </section>
-    <nav>
-      <a href="../index.html">Courses</a> |
-      <a href="../index.html">Research</a> |
-      <a href="../index.html">Fun</a> |
-      <a href="../index.html">About</a>
-    </nav>
+    <aside style="float:right; margin:0 5%">
+        <nav>
+          <a href="../index.html">Home</a> |
+          <a href="../courses.html">Courses</a> |
+          <a href="../index.html">Research</a> |
+          <a href="../index.html">Fun</a> |
+          <a href="../index.html">About</a>
+        </nav>
+      </aside>
 
     <section class="main-content">
       <h3>
-<a id="welcome-to-zining-wangs-homepage" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Zining Wang's Homepage!</h3>
+<a id="My Classes" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Zining Wang's Homepage!</h3>
 
 
 
 <div class="container">
-  <div class="row">
-  <br>
-  </div>
-  <div class="row vertical-align">
-    <p>
-    <img src="wzn.jpg" class="img-circle" alt="Cannot display Zining's photo :(" style="float:right" width="184" height="236" >
-    </p>
-    <div class="col-sm-8 col-md-8 col-xs-12">
-    Undergraduate Student<br>
-    <a href="http://www.mathcs.emory.edu/">Department of Mathematics and Computer Science</a><br>
-    <a href="http://www.emory.edu">Emory University</a><br><br>
-    </div>
-    
-    
-  </div>
-  <br>
-
-<h3>
-<a id="myself" class="anchor" href="#myself" aria-hidden="true"><span class="octicon octicon-link"></span></a>Myself</h3>
-
-<p>Hello! Here is my courses in <a href="http://www.emory.edu">Emory University</a>. I am pursuing double majors in Applied Math (BS) and Computer Science (BS). </p>
-
-
-<h3>
-<a id="skills-and-coursework" class="anchor" href="#skills-and-coursework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Skills and Coursework</h3>
-
-<p><b>Math</b>: Mathematic modeling, Statistics, Optimization, Numerical Analysis, Matrix Theory, Real Analysis
-<br>
-<b>Computer Science</b>: Java, Python, C, Sql, R Programming, Machine Learning, Data Mining
-<br>
-<b>Language</b>: Fluent Chinese, fluent English, Intermediate French</p>
-
-<h3>
-<a id="hobbies" class="anchor" href="#hobbies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hobbies</h3>
-
-<p>Basketball, Table Tennis, Cooking Chinese Cuisine, Playing the Piano</p>
-    
-<div style="text-align:center"> 
-  <button onclick="playPause()">Play/Pause</button> 
-  <button onclick="makeBig()">Big</button>
-  <button onclick="makeSmall()">Small</button>
-  <button onclick="makeNormal()">Normal</button>
-  <br><br>
-  <video id="video1" width="200" height="240">
-    <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
-  </video>
-</div> 
-
-<script> 
-var myVideo = document.getElementById("video1"); 
-function playPause() { 
-    if (myVideo.paused) 
-        myVideo.play(); 
-    else 
-        myVideo.pause(); 
-} 
-function makeBig() { 
-    myVideo.width = 500; 
-    myVideo.height = 600; 
-} 
-function makeSmall() { 
-    myVideo.width = 100; 
-    myVideo.height = 120; 
-} 
-function makeNormal() { 
-    myVideo.width = 200; 
-    myVideo.height = 240; 
-} 
-</script> 
-
-<p>Please enjoy my piano debut: a famous Chinese song, <a href="https://www.youtube.com/watch?v=iwWIZ18WU8Y" target="_blank">Red Rose</a>: )</p>
-
-<h3>
-<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
-
-<p>My email address is <a href="mailto:emorywangzining@gmail.com">emorywangzining@gmail.com</a>. Feel free to contact me!</p>
-
-      
-
-    </section>
-
+  <h2>My Courses</h2>
+  <p>Here are some Useful and Interesting Classes I have taken.</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Name</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CS534</td>
+        <td>Machine Learning</td>
+        <td><a href="http://joyceho.github.io/cs534_s17/index.html">http://joyceho.github.io/cs534_s17/index.html</a></td>
+      </tr>      
+      <tr class="success">
+        <td>CS378</td>
+        <td>Data Mining</td>
+        <td><a href="http://www.mathcs.emory.edu/~lxiong/cs378/index.html">http://www.mathcs.emory.edu/~lxiong/cs378/index.html</a></td>
+      </tr>
+      <tr class="danger">
+        <td>CS424</td>
+        <td>Theory of Computing</td>
+        <td><a href="http://www.mathcs.emory.edu/~cs424000/">http://www.mathcs.emory.edu/~cs424000/</a></td>
+      </tr>
+      <tr class="info">
+        <td>Math346</td>
+        <td>Optimization</td>
+        <td><a href="http://www.mathcs.emory.edu/~oliker/">http://www.mathcs.emory.edu/~oliker/</a></td>
+      </tr>
+      <tr class="warning">
+        <td>CS329</td>
+        <td>Computational Linguistics</td>
+        <td><a href="https://github.com/emory-courses/cs329/wiki/Schedule">https://github.com/emory-courses/cs329/wiki/Schedule</a></td>
+      </tr>
+      <tr class="active">
+        <td>To be continue...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   
+    </section>
   </body>
 </html>
