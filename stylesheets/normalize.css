@@ -453,3 +453,20 @@ button {
       left: 480px;
       top: -50px;
 }
+
+#cheat {
+  background-color: gray;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 0px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+      left: 370px;
+      top: -50px;
+}

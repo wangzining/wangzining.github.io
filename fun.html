@@ -65,6 +65,7 @@
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+var scoreMultiplyer = 1;
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
@@ -156,7 +157,7 @@ function updateGameArea() {
         minHeight = 20;
         maxHeight = 200;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 50;
+        minGap = 100;
         maxGap = 200;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(10, height, "green", x, 0));
@@ -166,7 +167,7 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text="SCORE: " + myGameArea.frameNo;
+    myScore.text="SCORE: " + myGameArea.frameNo * scoreMultiplyer;
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
@@ -182,14 +183,28 @@ function accelerate(n) {
 
     myGamePiece.gravity = n;
 }
+
+function moveleft() {
+    myGamePiece.speedX -= 3;
+}
+
+function unstoppable(){
+    document.getElementById("kaigua").innerHTML = "Thank you! You have unlocked the Unbeatable Mode!";
+    document.getElementById("kaigua").style.fontSize = "20px"; 
+    document.getElementById("kaigua").style.color = "red";
+    scoreMultiplyer = 100;
+}
+
 </script>
 <br>
 <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">FLY
 </button>
 <div class="relative">
 <p>Click the FLY button to start the game</p>
-<p>How long can you stay alive? Use the FLY button to stay in the air..</p>
+<p id = "kaigua">How long can you stay alive? Use the FLY button to stay in the air...</p>
 </div>
+<button id = "cheat" onclick="moveleft();unstoppable()">Click on me if you like my website</button>
+
 </body>
       
 </html>
