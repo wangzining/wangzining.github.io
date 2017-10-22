@@ -1,5 +1,5 @@
 function displayLinkin() {
-	var link = document.createElement('k');
+	var link = document.createElement('a');
     //document.getElementById("LinkedinWebpage").innerHTML = "https://www.linkedin.com/in/wangzining43/";
     link.innerHTML = "https://www.linkedin.com/in/wangzining43/";
     link.href = "https://www.linkedin.com/in/wangzining43/";
