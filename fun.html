@@ -1,73 +1,576 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Zining Wang by wangzining</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'      type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#ffffff">
-    <style>
-      canvas {
+<head>
+  <meta charset="UTF-8">
+  <title>Zining Wang by wangzining</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    body { font-family: 'Open Sans', sans-serif; }
+    canvas {
       border:1px solid #d3d3d3;
       background-color: #f1f1f1;
-      align-content: center;
-      flex-wrap: wrap;
-      align-self:center;
-      position: relative;
-      left: 0px;
-      top: 10px;
-      }
-      div.relative {
-        align-content:  center;
-      position: relative;
-      left: 300px;
-      top: -50px;
-    
+      display: block;
+      margin: 0 auto;
+      margin-top: 10px;
+      border-radius: 10px;
     }
-    </style>
-  </head>
-  <body onload="startGame()">
-    <section class="page-header">
-      <h1 class="project-name">Zining Wang</h1>
-      <h2 class="project-tagline"></h2>
-    </section id = "TTT">
-    <aside style="float:right; margin:0 5%">
-      <nav>
-        <a href="../index.html">Home</a> |
-        <a href="../courses.html">Courses</a> |
-        <a href="../research.html">Research</a> |
-        <a href="../fun.html">Fun</a> |
-        <a href="../about.html">About</a>
-      </nav>
-    </aside>
-    <section class="main-content">
-      <h3>
-        <p><a id="Comming" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flappy Red</p>
-        <a id="Comming Soon!" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+    .tetris-controls {
+      text-align:center;
+      margin: 20px 0 10px 0;
+      color: #355c8c;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .tetris-controls span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #eaf1fb;
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin: 2px;
+      box-shadow: 0 1px 2px #b3c6e0;
+      font-size: 16px;
+    }
+    .tetris-controls i {
+      font-style: normal;
+      font-size: 20px;
+      color: #355c8c;
+    }
+    .cheat-btn {
+      background: linear-gradient(90deg, #355c8c 0%, #4e9af1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      box-shadow: 0 2px 8px #b3c6e0;
+      transition: background 0.2s;
+    }
+    .cheat-btn:hover {
+      background: linear-gradient(90deg, #4e9af1 0%, #355c8c 100%);
+    }
+    .boom-btn {
+      background: #ff9800;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      margin-left: 10px;
+      box-shadow: 0 2px 8px #b3c6e0;
+      transition: background 0.2s;
+      display: none;
+    }
+    .boom-btn.show { display: inline-block; }
+    .pause-btn {
+      background: #bfa100;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      margin-left: 10px;
+      box-shadow: 0 2px 8px #b3c6e0;
+      transition: background 0.2s;
+    }
+    .pause-btn.paused {
+      background: #888;
+    }
+    /* Modal styles */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 28px 24px 28px;
+      box-shadow: 0 4px 32px #355c8c44;
+      text-align: center;
+      min-width: 320px;
+      max-width: 90vw;
+    }
+    .modal h2 {
+      color: #355c8c;
+      margin-bottom: 18px;
+    }
+    .modal button {
+      margin: 10px 8px 0 8px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal .yes {
+      background: #4e9af1;
+      color: #fff;
+    }
+    .modal .already {
+      background: #0fcf7a;
+      color: #fff;
+    }
+    .modal .no {
+      background: #f55;
+      color: #fff;
+    }
+    .tetris-intro {
+      margin: 32px auto 0 auto;
+      max-width: 480px;
+      background: #f7faff;
+      border-radius: 10px;
+      padding: 18px 24px;
+      color: #355c8c;
+      font-size: 18px;
+      box-shadow: 0 2px 8px #b3c6e0;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .modal { min-width: 90vw; }
+      .tetris-controls { font-size: 15px; }
+      .tetris-intro { font-size: 16px; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <section class="page-header">
+    <h1 class="project-name">Zining Wang</h1>
+  </section>
+  <aside style="float:right; margin:0 5%">
+    <nav>
+      <a href="../index.html">Home</a> |
+      <a href="../courses.html">Courses</a> |
+      <a href="../research.html">Research</a> |
+      <a href="../fun.html">Fun</a> |
+      <a href="../about.html">About</a>
+    </nav>
+  </aside>
+  <section class="main-content">
+    <!-- Start Screen -->
+    <div id="start-screen" style="text-align:center; margin-top:60px;">
+      <button id="start-btn" class="cheat-btn" style="font-size:22px; padding:16px 40px;">
+        <i class="fa-solid fa-play"></i> Start Tetris
+      </button>
+      <div class="tetris-intro">
+        <b>Welcome to Zining Wang's Tetris!</b><br>
+        Enjoy a fun twist on classic Tetris with special cheat modes, custom shapes, and interactive features.<br>
+        Click "Start Tetris" to begin, use the controls to play, and try out the "Cheat Code" for surprises.<br>
+        Have fun and aim for a high score!
+      </div>
+    </div>
+    <!-- Tetris Game Container -->
+    <div id="tetris-container" style="display:none;">
+      <div class="tetris-controls">
+        <span><i class="fa-solid fa-arrow-up"></i>Rotate</span>
+        <span><i class="fa-solid fa-arrow-down"></i>Soft Drop</span>
+        <span><i class="fa-solid fa-arrow-left"></i>Left</span>
+        <span><i class="fa-solid fa-arrow-right"></i>Right</span>
+        <span><i class="fa-solid fa-spacebar"></i>Hard Drop</span>
+        <span><i class="fa-solid fa-rotate-right"></i>Restart</span>
+        <span style="background:#fffbe6; color:#bfa100;"><i class="fa-solid fa-lightbulb"></i>Click game area if keys don't work</span>
+      </div>
+      <div style="text-align:center; margin-top:20px;">
+        <h3>Tetris (俄罗斯方块)</h3>
+        <canvas id="tetris" width="300" height="600" style="background:#222; border:2px solid #355c8c; border-radius:10px;" tabindex="0"></canvas>
+        <div id="tetris-msg" style="margin-top:10px; color:#355c8c; font-weight:bold;"></div>
+        <button onclick="tetrisRestart()" class="cheat-btn" style="background:#0fcf7a; margin-top:10px;"><i class="fa-solid fa-rotate-right"></i> Restart</button>
+        <button id="pause-btn" class="pause-btn"><i class="fa-solid fa-pause"></i> Pause</button>
+        <button id="boom-btn" class="boom-btn"><i class="fa-solid fa-bomb"></i> Boom</button>
+      </div>
+      <div style="text-align:center;">
+        <button id="cheat-btn" class="cheat-btn"><i class="fa-solid fa-user-secret"></i> Cheat Code</button>
+      </div>
+      <!-- Modal -->
+      <div class="modal-bg" id="modal-bg">
+        <div class="modal">
+          <h2>Want to connect on LinkedIn?</h2>
+          <p>Choose your answer:</p>
+          <button class="yes">Yes, I will send connection request</button>
+          <button class="already">I have already added you!</button>
+          <button class="no">No way</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // --- Tetris Logic ---
+    const tetrisRows = 20, tetrisCols = 10, tetrisCell = 30;
+    // Rectangle shapes (easy mode)
+    const tetrominoesRect = [
+      [[1,1,1,1]], // I
+      [[1,1],[1,1]], // O
+    ];
+    // All normal shapes
+    const tetrominoesAll = [
+      [[1,1,1,1]], // I
+      [[1,1],[1,1]], // O
+      [[0,1,0],[1,1,1]], // T
+      [[1,0,0],[1,1,1]], // J
+      [[0,0,1],[1,1,1]], // L
+      [[1,1,0],[0,1,1]], // S
+      [[0,1,1],[1,1,0]], // Z
+    ];
+    // User's favorite shape (T)
+    const tetrominoFavorite = [[0,1,0],[1,1,1]];
+    // Custom shapes for "no" mode
+    const tetrominoW = [
+      [1,0,0],
+      [1,1,0],
+      [0,1,1]
+    ];
+    const tetrominoZ = [
+      [1,1,0],
+      [0,1,1],
+      [0,0,1]
+    ];
+    const tetrominoN = [
+      [0,1,1],
+      [1,1,0],
+      [1,0,0]
+    ];
+    const tetrisColors = ["#0ff","#ff0","#a0f","#00f","#fa0","#0f0","#f00","#fff","#888","#f69","#f90","#0cf"];
+    let tetrisBoard, tetrisPiece, tetrisX, tetrisY, tetrisType, tetrisRot, tetrisOver, tetrisTimer, tetrisScore;
+    let tetrisCanvas = null;
+    let tetrisCtx = null;
+    let tetrisMsg = null;
+    let boomBtn = null;
+    let pauseBtn = null;
+    // Cheat mode: null=normal, "rect"=rectangles, "fav"=favorite, "bad"=no way
+    let cheatMode = null;
+    let dropCount = 0;
+    let noShapeCycle = 0; // for "no" mode
+    let boomEnabled = false;
+    let paused = false;
 
-        
-      </h3>
+    function tetrisRestart() {
+      tetrisBoard = Array.from({length:tetrisRows},()=>Array(tetrisCols).fill(0));
+      tetrisScore = 0;
+      tetrisOver = false;
+      tetrisMsg.textContent = "";
+      dropCount = 0;
+      noShapeCycle = 0;
+      boomEnabled = (cheatMode === "fav");
+      boomBtn.classList.toggle("show", boomEnabled);
+      paused = false;
+      pauseBtn.classList.remove("paused");
+      pauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+      tetrisNewPiece();
+      tetrisDraw();
+      if(tetrisTimer) clearInterval(tetrisTimer);
+      tetrisTimer = setInterval(tetrisTick, 400);
+    }
+    function tetrisNewPiece() {
+      dropCount++;
+      let pool;
+      if (cheatMode === "rect") {
+        pool = tetrominoesRect;
+        tetrisType = Math.floor(Math.random()*pool.length);
+        tetrisPiece = pool[tetrisType];
+      } else if (cheatMode === "fav") {
+        if (dropCount === 1) {
+          tetrisType = 2;
+          tetrisPiece = tetrominoFavorite;
+        } else if (dropCount % 3 === 0) {
+          let best = findBestFitShape();
+          tetrisType = best.type;
+          tetrisPiece = best.shape;
+        } else {
+          tetrisType = 2;
+          tetrisPiece = tetrominoFavorite;
+        }
+      } else if (cheatMode === "bad") {
+        if (dropCount === 1) {
+          pool = tetrominoesAll;
+          tetrisType = Math.floor(Math.random()*pool.length);
+          tetrisPiece = pool[tetrisType];
+        } else if (dropCount % 4 === 1) {
+          tetrisType = 9;
+          tetrisPiece = tetrominoW;
+        } else if (dropCount % 4 === 2) {
+          tetrisType = 10;
+          tetrisPiece = tetrominoZ;
+        } else if (dropCount % 4 === 3) {
+          tetrisType = 11;
+          tetrisPiece = tetrominoN;
+        } else {
+          pool = tetrominoesAll;
+          tetrisType = Math.floor(Math.random()*pool.length);
+          tetrisPiece = pool[tetrisType];
+        }
+      } else {
+        pool = tetrominoesAll;
+        tetrisType = Math.floor(Math.random()*pool.length);
+        tetrisPiece = pool[tetrisType];
+      }
+      tetrisRot = 0;
+      tetrisX = Math.floor((tetrisCols - tetrisPiece[0].length)/2);
+      tetrisY = 0;
+      if(!tetrisValid(tetrisX, tetrisY, tetrisPiece)) {
+        tetrisOver = true;
+        tetrisMsg.textContent = "Game Over! Score: "+tetrisScore;
+        clearInterval(tetrisTimer);
+      }
+    }
+    function tetrisRotate(piece) {
+      return piece[0].map((_,i)=>piece.map(row=>row[i]).reverse());
+    }
+    function tetrisValid(x, y, piece) {
+      for(let i=0;i<piece.length;i++)
+        for(let j=0;j<piece[0].length;j++)
+          if(piece[i][j])
+            if(y+i<0||y+i>=tetrisRows||x+j<0||x+j>=tetrisCols||tetrisBoard[y+i][x+j])
+              return false;
+      return true;
+    }
+    function tetrisMerge() {
+      for(let i=0;i<tetrisPiece.length;i++)
+        for(let j=0;j<tetrisPiece[0].length;j++)
+          if(tetrisPiece[i][j])
+            tetrisBoard[tetrisY+i][tetrisX+j]=tetrisType+1;
+    }
+    function tetrisClear() {
+      let lines=0;
+      for(let i=tetrisRows-1;i>=0;i--) {
+        if(tetrisBoard[i].every(x=>x)) {
+          tetrisBoard.splice(i,1);
+          tetrisBoard.unshift(Array(tetrisCols).fill(0));
+          lines++;
+          i++;
+        }
+      }
+      tetrisScore += lines*100;
+    }
+    function tetrisDraw() {
+      tetrisCtx.clearRect(0,0,tetrisCanvas.width,tetrisCanvas.height);
+      for(let i=0;i<tetrisRows;i++)
+        for(let j=0;j<tetrisCols;j++)
+          if(tetrisBoard[i][j]) {
+            tetrisCtx.fillStyle = tetrisColors[(tetrisBoard[i][j]-1)%tetrisColors.length];
+            tetrisCtx.fillRect(j*tetrisCell,i*tetrisCell,tetrisCell-1,tetrisCell-1);
+          }
+      for(let i=0;i<tetrisPiece.length;i++)
+        for(let j=0;j<tetrisPiece[0].length;j++)
+          if(tetrisPiece[i][j]) {
+            tetrisCtx.fillStyle = tetrisColors[tetrisType%tetrisColors.length];
+            tetrisCtx.fillRect((tetrisX+j)*tetrisCell,(tetrisY+i)*tetrisCell,tetrisCell-1,tetrisCell-1);
+          }
+      tetrisCtx.fillStyle="#fff";
+      tetrisCtx.font="18px sans-serif";
+      tetrisCtx.fillText("Score: "+tetrisScore,10,590);
+      if (paused) {
+        tetrisCtx.fillStyle = "rgba(0,0,0,0.5)";
+        tetrisCtx.fillRect(0,0,tetrisCanvas.width,tetrisCanvas.height);
+        tetrisCtx.fillStyle = "#fff";
+        tetrisCtx.font = "32px sans-serif";
+        tetrisCtx.fillText("Paused", 90, 320);
+      }
+    }
+    function tetrisTick() {
+      if(tetrisOver || paused) return;
+      if(tetrisValid(tetrisX, tetrisY+1, tetrisPiece)) {
+        tetrisY++;
+      } else {
+        tetrisMerge();
+        tetrisClear();
+        tetrisNewPiece();
+      }
+      tetrisDraw();
+    }
+    // Prevent arrow keys from scrolling the page when playing
+    window.addEventListener("keydown", function(e) {
+      if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)) {
+        if(document.activeElement === tetrisCanvas || tetrisCanvas === document.activeElement) {
+          e.preventDefault();
+        }
+      }
+    }, {passive:false});
+    // Focus canvas on click
+    function setupCanvasFocus() {
+      tetrisCanvas.addEventListener("click", function() {
+        tetrisCanvas.focus();
+      });
+    }
+    // Keyboard controls
+    function setupKeyboard() {
+      document.addEventListener('keydown',function(e){
+        if(tetrisOver || paused) return;
+        let nx=tetrisX, ny=tetrisY, np=tetrisPiece;
+        if(e.key==="ArrowLeft") { nx--; e.preventDefault(); }
+        if(e.key==="ArrowRight") { nx++; e.preventDefault(); }
+        if(e.key==="ArrowDown") { ny++; e.preventDefault(); }
+        if(e.key==="ArrowUp") { np=tetrisRotate(tetrisPiece); e.preventDefault(); }
+        if(tetrisValid(nx,ny,np)) {
+          tetrisX=nx; tetrisY=ny; tetrisPiece=np;
+          tetrisDraw();
+        }
+        if(e.key===" ") { // Hard drop
+          while(tetrisValid(tetrisX,tetrisY+1,tetrisPiece)) tetrisY++;
+          tetrisDraw();
+          e.preventDefault();
+        }
+      });
+    }
 
-</section>
-  
-<script src="JS files/flappy red.js"></script>
+    // --- Modal logic for Cheat Code ---
+    function setupModal() {
+      const modalBg = document.getElementById('modal-bg');
+      const modalBtns = modalBg.querySelectorAll('button');
+      document.getElementById('cheat-btn').onclick = function() {
+        modalBg.style.display = "flex";
+      };
+      // Modal button handlers
+      modalBtns[0].onclick = function() { // Yes, send request
+        cheatMode = "rect";
+        tetrisRestart();
+        modalBg.style.display = "none";
+        setTimeout(() => {
+          window.open('https://www.linkedin.com/in/wangzining43/', '_blank');
+        }, 300);
+      };
+      modalBtns[1].onclick = function() { // Already friend
+        cheatMode = "fav";
+        tetrisRestart();
+        modalBg.style.display = "none";
+      };
+      modalBtns[2].onclick = function() { // No way
+        cheatMode = "bad";
+        tetrisRestart();
+        modalBg.style.display = "none";
+      };
+      // Close modal on background click
+      modalBg.onclick = function(e) {
+        if(e.target === modalBg) modalBg.style.display = "none";
+      };
+    }
 
-<br>
-<button id ="fly" onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">FLY
-</button>
-<div class="relative">
-<p>Click the FLY button to start the game</p>
-<p id = "kaigua">How long can you stay alive? Use the FLY button to stay in the air...</p>
-</div>
-<button id = "cheat" onclick="moveleft();unstoppable()">Click on me if you like my website</button>
+    // --- Boom Button logic ---
+    function setupBoom() {
+      boomBtn.onclick = function() {
+        if (!boomEnabled || tetrisOver || paused) return;
+        for (let i = 0; i < tetrisRows; i++) {
+          if (tetrisBoard[i].some(x=>x)) {
+            tetrisBoard[i] = Array(tetrisCols).fill(1);
+          }
+        }
+        tetrisDraw();
+        setTimeout(() => {
+          tetrisClear();
+          tetrisDraw();
+        }, 200);
+      };
+    }
 
+    // --- Pause Button logic ---
+    function setupPause() {
+      pauseBtn.onclick = function() {
+        if (tetrisOver) return;
+        paused = !paused;
+        if (paused) {
+          pauseBtn.classList.add("paused");
+          pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i> Resume';
+        } else {
+          pauseBtn.classList.remove("paused");
+          pauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+        }
+        tetrisDraw();
+      };
+    }
+
+    // --- Helper: Find best fit shape for current row (for "already friend" mode) ---
+    function findBestFitShape() {
+      for (let i = tetrisRows-1; i >= 0; i--) {
+        let empty = [];
+        for (let j = 0; j < tetrisCols; j++) {
+          if (!tetrisBoard[i][j]) empty.push(j);
+        }
+        if (empty.length > 0 && empty.length <= 4) {
+          for (let s = 0; s < tetrominoesAll.length; s++) {
+            let shape = tetrominoesAll[s];
+            for (let rot = 0; rot < 4; rot++) {
+              for (let x = 0; x <= tetrisCols-shape[0].length; x++) {
+                if (canFillRow(i, x, shape)) {
+                  return {shape: shape, type: s};
+                }
+              }
+              shape = tetrisRotate(shape);
+            }
+          }
+        }
+      }
+      return {shape: tetrominoFavorite, type: 2};
+    }
+    function canFillRow(row, x, shape) {
+      let y = row - shape.length + 1;
+      if (y < 0) return false;
+      for (let i = 0; i < shape.length; i++) {
+        for (let j = 0; j < shape[0].length; j++) {
+          if (shape[i][j]) {
+            let boardY = y + i, boardX = x + j;
+            if (boardY < 0 || boardY >= tetrisRows || boardX < 0 || boardX >= tetrisCols) return false;
+            if (tetrisBoard[boardY][boardX]) return false;
+          }
+        }
+      }
+      let tempRow = tetrisBoard[row].slice();
+      for (let j = 0; j < shape[0].length; j++) {
+        for (let i = 0; i < shape.length; i++) {
+          if (shape[i][j]) {
+            let boardY = y + i;
+            if (boardY === row) tempRow[x + j] = 1;
+          }
+        }
+      }
+      return tempRow.every(x=>x);
+    }
+
+    // --- Start Button Logic ---
+    document.getElementById('tetris-container').style.display = 'none';
+    document.getElementById('start-screen').style.display = 'block';
+    document.getElementById('start-btn').onclick = function() {
+      document.getElementById('start-screen').style.display = 'none';
+      document.getElementById('tetris-container').style.display = 'block';
+      tetrisCanvas = document.getElementById('tetris');
+      tetrisCtx = tetrisCanvas.getContext('2d');
+      tetrisMsg = document.getElementById('tetris-msg');
+      boomBtn = document.getElementById('boom-btn');
+      pauseBtn = document.getElementById('pause-btn');
+      setupCanvasFocus();
+      setupKeyboard();
+      setupModal();
+      setupBoom();
+      setupPause();
+      tetrisRestart();
+    };
+  </script>
 </body>
-      
 </html>
