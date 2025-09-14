@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>Zining Wang's Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'      type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
@@ -30,104 +33,106 @@
     </aside>
     <section class="main-content">
       <h3>
-<a id="welcome-to-zining-wangs-homepage" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Zining Wang's Homepage!</h3>
-
-
-
-<div class="container">
-  <div class="row">
-  <br>
+        <a id="welcome-to-zining-wangs-homepage" class="anchor" href="#welcome-to-zining-wangs-homepage" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Welcome to Zining Wang's Homepage!
+      </h3>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center">
+            <img src="wzn.jpg" class="rounded-circle img-fluid" alt="Cannot display Zining's photo :(" width="322" height="236">
+          </div>
+          <div class="col-md-8">
+            <div>
+              2019 - now: Software Engineer in <a href="https://www.cisco.com/">Cisco Systems</a><br><br>
+            </div>
+            <div>
+              2017 - 2019: Master of Science in Computer Science Engineering <br>
+              <a href="https://cse.ucsd.edu/">Jacobs School of Engineering,</a><br>
+              <a href="http://www.emory.edu">UC San Diego</a><br><br>
+            </div>
+            <div>
+              2013 - 2017: Bachelor of Science in Applied Math and Computer Science<br>
+              <a href="http://www.mathcs.emory.edu/">Department of Mathematics and Computer Science,</a><br>
+              <a href="http://www.emory.edu">Emory University</a><br><br>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <h3>
+        <a id="myself" class="anchor" href="#myself" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Myself
+      </h3>
+      <p>
+        My name is Zining Wang. My Chinese name is 王梓宁. I’m an innovative, dynamic, and passionate dreamer from <a href="https://www.youtube.com/watch?v=P-WsMQMg-Hs">Nanjing</a>, China. I earned my MS in Computer Science Engineering in 2019 and have been building my career at the intersection of data science and software engineering ever since. I am driven by the mission of leveraging data and software platforms to solve real-world problems and deliver meaningful impact. Right now, I work as a full-time software engineer on <a href="https://www.cisco.com/c/en/us/support/wireless/ultra-cloud-core-subscriber-microservices-infrastructure/series.html">Cisco SMI Product</a>, developing agentic AI applications and monitoring solutions for 5G platforms, while continuously learning and applying cutting-edge technologies. In my free time, I am also a mentor, speecher and teacher to help younger students learn computer science and motivate their interests. What is more, I'm also a Pokémon Go Youtuber for interest, once ranked top 19 in the world in PVP : )
+      </p>
+      <h3>
+        <a id="skills-and-coursework" class="anchor" href="#skills-and-coursework" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Skills and Coursework
+      </h3>
+      <p>
+        <b>Math</b>: Mathematic modeling, Statistics, Convex Optimization, Numerical Analysis, Matrix Theory, Real Analysis
+        <br>
+        <b>Computer Science</b>: Java, Python, Kubenetes, SQL, R Programming, Machine Learning, Data Mining, Algorithms, Natural Language Processing, Neural Network, Database Implementations, Unit Testing, API Gateway, REST API, OpenAPI, PowerBI.
+        <br>
+        <b>Economics</b>: Microeconomics, Macroeconomics, Contemporary Economic Issues, Econometrics
+        <br>
+        <b>Language</b>: Fluent Chinese, fluent English, Intermediate French
+      </p>
+      <h3>
+        <a id="hobbies" class="anchor" href="#hobbies" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Hobbies
+      </h3>
+      <p>Basketball, Table Tennis, Cooking Chinese Cuisine, Playing the Piano</p>
+      <!-- My video section starts here -->
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg border-0" style="background: #e3eafc; border-radius: 1.5rem;">
+        <div class="card-header text-center" style="background: #6c8cd5; border-radius: 1.5rem 1.5rem 0 0;">
+          <strong style="font-size:1.2rem; color:#fff;">🎹 Piano Debut: Red Rose (红玫瑰)</strong>
+        </div>
+        <div class="card-body text-center">
+          <video id="video1" class="mb-3 rounded" width="400" height="300" style="max-width:100%; background:#f5f8ff; border-radius:1rem;">
+            <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="btn-group mb-2" role="group">
+            <button type="button" class="btn btn-light border" onclick="playVideo()" title="Play">
+              <i class="bi bi-play-fill" style="font-size:1.5rem;color:#355c8c;"></i>
+            </button>
+            <button type="button" class="btn btn-light border" onclick="pauseVideo()" title="Pause">
+              <i class="bi bi-pause-fill" style="font-size:1.5rem;color:#355c8c;"></i>
+            </button>
+            <button type="button" class="btn btn-light border" onclick="replayVideo()" title="Replay">
+              <i class="bi bi-arrow-counterclockwise" style="font-size:1.5rem;color:#355c8c;"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row vertical-align">
-    <p>
-    <img src="wzn.jpg" class="img-circle" alt="Cannot display Zining's photo :(" style="float:right" width="322" height="236" >
-    </p>
-    <div class="col-sm-8 col-md-8 col-xs-12">
-    2019 - now: Software Engineer in <a href="https://www.cisco.com/">Cisco Systems</a><br><br>
-    </div>
-    <div class="col-sm-8 col-md-8 col-xs-12">
-    2017 - 2019: Master of Science in Computer Science Engineering <br>
-    <a href="https://cse.ucsd.edu/">Jacobs School of Engineering,</a><br>
-    <a href="http://www.emory.edu">UC San Diego</a><br><br>
-    </div>
-    <div class="col-sm-8 col-md-8 col-xs-12">
-    2013 - 2017: Bachelor of Science in Applied Math and Computer Science<br>
-    <a href="http://www.mathcs.emory.edu/">Department of Mathematics and Computer Science,</a><br>
-    <a href="http://www.emory.edu">Emory University</a><br><br>
-    </div>
-    
-    
-  </div>
-  <br>
-
-<h3>
-<a id="myself" class="anchor" href="#myself" aria-hidden="true"><span class="octicon octicon-link"></span></a>Myself</h3>
-
-<p>My name is Zining Wang. My Chinese name is 王梓宁. I’m an innovative, dynamic, and passionate dreamer from <a href="https://www.youtube.com/watch?v=P-WsMQMg-Hs">Nanjing</a>, China. I successfully got the MS degree in Computer Science Engineering in 2019. After I finished my student journey, I am on my way pursuing the my career as data scientist and software engineer. I believe that my dream of using data and software platforms to solve real-life problems will always bring me motivations and inspirations to make the world a better place. Right now, I enjoy working as a full-time software engineer in Cisco to learn new skills in <a href="https://www.cisco.com/c/en/us/products/wireless/private-5g/index.html">Cisco P5G solution</a>. In my free time, I am also a speecher and teacher to help younger students learn computer science and motivate their interests. What is more, I'm also a Pokémon Go Youtuber for interest, once ranked top 19 in the world : ) </p> 
-
-
-<h3>
-<a id="skills-and-coursework" class="anchor" href="#skills-and-coursework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Skills and Coursework</h3>
-
-<p><b>Math</b>: Mathematic modeling, Statistics, Convex Optimization, Numerical Analysis, Matrix Theory, Real Analysis
-<br>
-<b>Computer Science</b>: Java, Python, C, SQL, R Programming, Machine Learning, Data Mining, Algorithms, Natural Language Processing, Neural Network, Database Implementations, Unit Testing, API Gateway, REST API, OpenAPI, PowerBI.
-<br>
-<b>Economics</b>: Microeconomics, Macroeconomics, Contemporary Economic Issues, Econometrics
-<br>
-<b>Language</b>: Fluent Chinese, fluent English, Intermediate French</p>
-
-<h3>
-<a id="hobbies" class="anchor" href="#hobbies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hobbies</h3>
-
-<p>Basketball, Table Tennis, Cooking Chinese Cuisine, Playing the Piano</p>
-    
-<div style="text-align:center"> 
-  <button onclick="playPause()">Play/Pause</button> 
-  <button onclick="makeBig()">Big</button>
-  <button onclick="makeSmall()">Small</button>
-  <button onclick="makeNormal()">Normal</button>
-  <br><br>
-  <video id="video1" width="200" height="240">
-    <source src="Red Rose(Hong Mei Gui).mov" type="video/mp4">
-  </video>
-</div> 
-
-<script> 
-var myVideo = document.getElementById("video1"); 
-function playPause() { 
-    if (myVideo.paused) 
-        myVideo.play(); 
-    else 
-        myVideo.pause(); 
-} 
-function makeBig() { 
-    myVideo.width = 500; 
-    myVideo.height = 600; 
-} 
-function makeSmall() { 
-    myVideo.width = 100; 
-    myVideo.height = 120; 
-} 
-function makeNormal() { 
-    myVideo.width = 200; 
-    myVideo.height = 240; 
-} 
-</script> 
-
-<p>Please enjoy my piano debut: a famous Chinese song, <a href="https://www.youtube.com/watch?v=iwWIZ18WU8Y" target="_blank">Red Rose</a>: )</p>
-
-<p>More piano songs available in <a href="https://www.youtube.com/watch?v=toGRuLlopbw"> my personal Youtube account</a> (Keep learning!!) </p>
-
-<h3>
-<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
-
-<p>My email address is <a href="mailto:emorywangzining@gmail.com">emorywangzining@gmail.com</a>. Feel free to contact me!</p>
-
-      
-
+</div>
+<script>
+  var myVideo = document.getElementById("video1");
+  function playVideo() { myVideo.play(); }
+  function pauseVideo() { myVideo.pause(); }
+  function replayVideo() { myVideo.currentTime = 0; myVideo.play(); }
+</script>
+      <!-- Modern video section ends here -->
+      <p>
+        Please enjoy my piano debut: a famous Chinese song, <a href="https://www.youtube.com/watch?v=iwWIZ18WU8Y" target="_blank">Red Rose</a>: )
+      </p>
+      <p>
+        More piano songs available in <a href="https://www.youtube.com/watch?v=toGRuLlopbw"> my personal Youtube account</a> (Keep learning!!)
+      </p>
+      <h3>
+        <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        Contact
+      </h3>
+      <p>
+        My email address is <a href="mailto:emorywangzining@gmail.com">emorywangzining@gmail.com</a>. Feel free to contact me!
+      </p>
     </section>
-
-  
   </body>
 </html>
